@@ -20,7 +20,6 @@ import cn.jzyunqi.common.third.jiguang.response.RegistrationIdListRsp;
 import cn.jzyunqi.common.third.jiguang.response.SchedulePageRsp;
 import cn.jzyunqi.common.utils.CollectionUtilPlus;
 import cn.jzyunqi.common.utils.StringUtilPlus;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.hc.core5.net.URIBuilder;
@@ -31,6 +30,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.URI;
@@ -114,7 +115,7 @@ public class JiguangPushClient {
             try {
                 ErrorRsp errorRsp = objectMapper.readValue(e.getResponseBodyAsString(), ErrorRsp.class);
                 throw new BusinessException("common_error_jg_push_error", errorRsp.getError().getCode(), errorRsp.getError().getMessage());
-            } catch (IOException e1) {
+            } catch (JacksonException e1) {
                 throw new BusinessException("common_error_jg_push_error", "-1", "readValue error");
             }
         } catch (Exception e) {
@@ -147,7 +148,7 @@ public class JiguangPushClient {
             try {
                 ErrorRsp errorRsp = objectMapper.readValue(e.getResponseBodyAsString(), ErrorRsp.class);
                 throw new BusinessException("common_error_jg_schedule_page_error", errorRsp.getError().getCode(), errorRsp.getError().getMessage());
-            } catch (IOException e1) {
+            } catch (JacksonException e1) {
                 throw new BusinessException("common_error_jg_schedule_page_error", "-1", "readValue error");
             }
         } catch (Exception e) {
@@ -196,7 +197,7 @@ public class JiguangPushClient {
             try {
                 ErrorRsp errorRsp = objectMapper.readValue(e.getResponseBodyAsString(), ErrorRsp.class);
                 throw new BusinessException("common_error_jg_schedule_add_error", errorRsp.getError().getCode(), errorRsp.getError().getMessage());
-            } catch (IOException e1) {
+            } catch (JacksonException e1) {
                 throw new BusinessException("common_error_jg_schedule_add_error", "-1", "readValue error");
             }
         } catch (Exception e) {
@@ -244,7 +245,7 @@ public class JiguangPushClient {
             try {
                 ErrorRsp errorRsp = objectMapper.readValue(e.getResponseBodyAsString(), ErrorRsp.class);
                 throw new BusinessException("common_error_jg_schedule_edit_error", errorRsp.getError().getCode(), errorRsp.getError().getMessage());
-            } catch (IOException e1) {
+            } catch (JacksonException e1) {
                 throw new BusinessException("common_error_jg_schedule_edit_error", "-1", "readValue error");
             }
         } catch (Exception e) {
@@ -268,7 +269,7 @@ public class JiguangPushClient {
             try {
                 ErrorRsp errorRsp = objectMapper.readValue(e.getResponseBodyAsString(), ErrorRsp.class);
                 throw new BusinessException("common_error_jg_schedule_del_error", errorRsp.getError().getCode(), errorRsp.getError().getMessage());
-            } catch (IOException e1) {
+            } catch (JacksonException e1) {
                 throw new BusinessException("common_error_jg_schedule_del_error", "-1", "readValue error");
             }
         } catch (Exception e) {
@@ -295,7 +296,7 @@ public class JiguangPushClient {
             try {
                 ErrorRsp errorRsp = objectMapper.readValue(e.getResponseBodyAsString(), ErrorRsp.class);
                 throw new BusinessException("common_error_jg_registration_id_list_error", errorRsp.getError().getCode(), errorRsp.getError().getMessage());
-            } catch (IOException e1) {
+            } catch (JacksonException e1) {
                 throw new BusinessException("common_error_jg_registration_id_list_error", "-1", "readValue error");
             }
         } catch (Exception e) {
@@ -326,7 +327,7 @@ public class JiguangPushClient {
             try {
                 ErrorRsp errorRsp = objectMapper.readValue(e.getResponseBodyAsString(), ErrorRsp.class);
                 throw new BusinessException("common_error_jg_alias_delete_error", errorRsp.getError().getCode(), errorRsp.getError().getMessage());
-            } catch (IOException e1) {
+            } catch (JacksonException e1) {
                 throw new BusinessException("common_error_jg_alias_delete_error", "-1", "readValue error");
             }
         } catch (Exception e) {
@@ -353,7 +354,7 @@ public class JiguangPushClient {
             try {
                 ErrorRsp errorRsp = objectMapper.readValue(e.getResponseBodyAsString(), ErrorRsp.class);
                 throw new BusinessException("common_error_jg_registration_id_detail_error", errorRsp.getError().getCode(), errorRsp.getError().getMessage());
-            } catch (IOException e1) {
+            } catch (JacksonException e1) {
                 throw new BusinessException("common_error_jg_registration_id_detail_error", "-1", "readValue error");
             }
         } catch (Exception e) {
